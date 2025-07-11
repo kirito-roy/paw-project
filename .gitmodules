@@ -1,0 +1,6 @@
+[submodule "PawPawsy"]
+	path = PawPawsy
+	url = git@github.com:kirito-roy/PawPawsy.git
+[submodule "express_api"]
+	path = express_api
+	url = git@github.com:kirito-roy/express_api.git

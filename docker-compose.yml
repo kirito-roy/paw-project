@@ -1,0 +1,33 @@
+services:
+  client:
+    build: ./PawPawsy
+    ports:
+      - "7689:7689"
+    volumes:
+      - ./PawPawsy:/app
+      - /app/node_modules
+    # env_file:
+    #   - ./PawPawsy/.env
+  server:
+    build: ./express_api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./express_api:/app
+      - /app/node_modules
+    env_file:
+      - ./express_api/.env
+  #   depends_on:
+  #     - mongo
+
+  # mongo:
+  #   image: mongo
+  #   container_name: mongodb
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongo-data:/data/db
+      # - ./server/mongo-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mongo-data:
