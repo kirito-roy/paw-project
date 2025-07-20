@@ -1,7 +1,7 @@
 services:
-  PawPawsy:
+  client:
     build: ./PawPawsy
-    container_name: PawPawsy
+    container_name: client
     ports:
       - "7689:7689"
     volumes:
@@ -9,9 +9,9 @@ services:
       - /app/node_modules
     # env_file:
     #   - ./PawPawsy/.env
-  express_api:
+  server:
     build: ./express_api
-    container_name: express_api
+    container_name: server
     ports:
       - "5000:5000"
     volumes:
