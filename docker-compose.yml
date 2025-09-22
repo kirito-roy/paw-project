@@ -1,26 +1,28 @@
 services:
   client:
-    build: ./PawPawsy
+    image: node:22
     container_name: client
     ports:
       - "7689:7689"
+    working_dir: /app/PawPawsy
     volumes:
-      - ./PawPawsy:/app/PawPawsy
-      - ./PawPawsy/node_modules:/app/PawPawsy/node_modules
-      # - /app/node_modules
+      - ./PawPawsy:/app/PawPawsy # Mount local source code for hot-reloading
+      # - /app/PawPawsy/node_modules # Use an anonymous volume to preserve node_modules from the image
+    command: sh -c 'npm install && npm run dev -- --host 0.0.0.0 '
     # env_file:
     #   - ./PawPawsy/.env
   server:
-    build: ./express_api
+    image: node:22
     container_name: server
     ports:
       - "5000:5000"
     volumes:
-      - ./express_api:/app/express_api
-      - ./express_api/node_modules:/app/express_api/node_modules
-      # - /app/node_modules
+      - ./express_api:/app/express_api # Mount local source code for hot-reloading
+      # - /app/express_api/node_modules # Use an anonymous volume to preserve node_modules from the image
     env_file:
       - ./express_api/.env
+    working_dir: /app/express_api
+    command: sh -c 'npm install && npm run dev'
     depends_on:
       - mongo
 

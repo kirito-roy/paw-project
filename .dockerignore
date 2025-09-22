@@ -1,0 +1,15 @@
+# Ignore mongo data directory to prevent permission issues during build
+mongo-data/
+
+# Ignore node_modules directories, as they are installed inside the container
+node_modules/
+PawPawsy/node_modules/
+express_api/node_modules/
+
+# Ignore build artifacts and caches
+dist/
+.angular/
+
+# Ignore git directory
+.git/
+.gitignore
